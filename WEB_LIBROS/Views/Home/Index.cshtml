@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+
+</head>
+
+
+
+<body>
+    <form method="post">
+        <div id="Buscador" class="d-flex justify-content-around" >
+            <div>
+                <input class="form-control col-5" type="text" name="autor" placeholder="Autor" value="@ViewBag.autor">
+
+            </div>
+            <div>
+                <input class="form-control" type="text" name="titulo" placeholder="Título" value="@ViewBag.Titulo">
+
+            </div>
+            <div>
+                <input class="form-control" type="text" name="descripcion" placeholder="Descripción" value="@ViewBag.Desc">
+
+            </div>
+
+        </div>
+       <br />
+
+
+
+        <div class="text-center">
+            <button class="btn btn-outline-primary mt-2" id="submit" type="submit" name="pagina" value="0">Buscar</button>
+        </div>
+        <div class="mt-5 d-flex justify-content-between" id="botonesPag">
+            <div>
+                <input class="btn btn-dark" type="submit" name="pagina" value="0">
+
+            </div>
+            <div>
+                <input class="btn btn-dark" type="submit" name="pagina" value="1">
+
+            </div>
+            <div>
+                <input class="btn btn-dark" type="submit" name="pagina" value="2">
+
+            </div>
+            <div>
+                <input class="btn btn-dark" type="submit" name="pagina" value="3">
+
+            </div>
+        </div>
+    </form>
+    <br />
+
+    @try
+    {
+         <div class="container" >
+        <table id="tablax" class="table table-responsive table-bordered w-100" >
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Descripcion</th>         
+        </tr>
+
+      
+         @foreach (var libro in ViewBag.Libros)
+        {
+            <tr>
+                <td>@libro.VolumeInfo.Title</td>
+
+                @foreach (var autor in libro.VolumeInfo.Authors)
+                {
+                    <td>@autor</td>
+                    break;
+                }
+
+                <td>@libro.VolumeInfo.Description</td>
+            </tr>
+        }
+       
+       
+
+    </table>
+    </div>
+
+
+        }
+        catch (NullReferenceException)
+        {
+
+        }
+
+
+</body>
+
+
+
